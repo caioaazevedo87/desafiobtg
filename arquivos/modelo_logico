@@ -1,0 +1,44 @@
++-------------------+       +----------------+        +-----------------+
+|     cliente       |       |    pedido      |        |    produto      |
++-------------------+       +----------------+        +-----------------+
+| id (PK)           |       | codigo_pedido  |        | id (PK)         |
+| nome              |<------| codigo_cliente |<-------| nome            |
++-------------------+       | data_hora_pedido         | preco           |
+                            +----------------+        +-----------------+
+                                    ^
+                                    |
+                                    |
+                                    |
+                                    |
+                                    |
+                                    v
+                            +------------------+
+                            |   item_pedido    |
+                            +------------------+
+                            | id (PK)          |
+                            | codigo_pedido   |
+                            | codigo_produto  |
+                            | quantidade      |
+                            +------------------+
+
+
+Tabela cliente:
+
+id (BIGINT, chave primária)
+nome (VARCHAR(255))
+Tabela produto:
+
+id (BIGINT, chave primária)
+nome (VARCHAR(255))
+preco (DECIMAL(10, 2))
+Tabela pedido:
+
+codigo_pedido (BIGINT, chave primária)
+codigo_cliente (BIGINT, chave estrangeira referenciando cliente.id)
+data_hora_pedido (DATETIME, valor padrão NOW())
+Tabela item_pedido:
+
+id (BIGINT, chave primária)
+codigo_pedido (BIGINT, chave estrangeira referenciando pedido.codigo_pedido)
+codigo_produto (BIGINT, chave estrangeira referenciando produto.id)
+quantidade (INT)
